@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/jspsych@7.2.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+        <script src="trial_list.js"></script>
+        <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <script>
+            const jsPsych = initJsPsych();
+            const intro = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: `
+<p>This experiment will present you with a number of words, one at a time.
+You will be shown each word for a short period of time, and asked whether
+you recognise it or not.</p>
+<p>When you click "Continue" the experiment will start.</p>
+`,
+                choices: "Continue"
+            }
+            /*** CODE FRAGMENT timeline_variable_trials ***/
+            const trial = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: jsPsych.timelineVariable("stimulus"),
+                prompt: "If you like this word press <em>A</em>. If you don't like it press <em>L</em>.",
+                stimulus_duration: jsPsych.timelineVariable("duration")
+            };
+            const timeline_trial = {
+                timeline: [trial],
+                timeline_variables: trial_stimuli
+            };
+            const timeline = [timeline_trial];
+            /*** END CODE FRAGMENT ***/
+            jsPsych.run(timeline);
+        </script>
+    </body>
+</html>

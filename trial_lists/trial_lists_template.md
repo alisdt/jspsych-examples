@@ -21,47 +21,13 @@ You've probably already seen timeline variables, (ATFIXME: link) but here's a re
 Instead of writing out all your trials "longhand":
 
 ```javascript
-// ATFIXME: untested
-const trial1 = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: "MOUSE",
-    prompt: "If you like this word press <em>A</em>. If you don't like it press <em>L</em>.",
-    stimulus_duration: 250
-};
-const trial2 = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: "RAT",
-    prompt: "If you like this word press <em>A</em>. If you don't like it press <em>L<em>.",
-    stimulus_duration: 500
-};
-const trial3 = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: "CAPYBARA",
-    prompt: "If you like this word press <em>A</em>. If you don't like it press <em>L</em>.",
-    stimulus_duration: 750
-};
-const timeline = [trial1, trial2, trial3];
+{{ longhand_trials }}
 ```
 
 you can combine them like so:
 
 ```javascript
-// ATFIXME: untested
-const trial_stimuli = [
-    { stimulus: "MOUSE", duration: 250 },
-    { stimulus: "RAT", duration: 500 },
-    { stimulus: "CAPYBARA", duration: 750 }
-];
-const trial = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: jsPsych.timelineVariable("stimulus"),
-    prompt: "If you like this word press <em>A</em>. If you don't like it press <em>L</em>.",
-    stimulus_duration: jsPsych.timelineVariable("duration")
-};
-const timeline_trial = {
-    timeline: [trial],
-    timeline_variables: trial_stimuli
-};
+{{ timeline_variable_trials }}
 ```
 
 This is fine for a few trials, but what if you had 50, 100, or more? Ideally we'd move them somewhere that isn't in our main JavaScript code file.

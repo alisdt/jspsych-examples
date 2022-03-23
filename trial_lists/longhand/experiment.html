@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/jspsych@7.2.1"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <script>
+            const jsPsych = initJsPsych();
+            const intro = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: `
+<p>This experiment will present you with a number of words, one at a time.
+You will be shown each word for a short period of time, and asked whether
+you recognise it or not.</p>
+<p>When you click "Continue" the experiment will start.</p>
+`,
+                choices: "Continue"
+            }
+            /*** CODE FRAGMENT longhand_trials ***/
+            const trial1 = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: "MOUSE",
+                prompt: "<p>If you recognise this word click <em>Yes</em>. If you don't, click <em>No</em>.</p>",
+                choices: ["Yes", "No"],
+                stimulus_duration: 250
+            };
+            const trial2 = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: "RAT",
+                prompt: "<p>If you recognise this word click <em>Yes</em>. If you don't, click <em>No</em>.</p>",
+                choices: ["Yes", "No"],
+                stimulus_duration: 500
+            };
+            const trial3 = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: "CAPYBARA",
+                prompt: "<p>If you recognise this word click <em>Yes</em>. If you don't, click <em>No</em>.</p>",
+                choices: ["Yes", "No"],
+                stimulus_duration: 750
+            };
+            const timeline = [trial1, trial2, trial3];
+            /*** END CODE FRAGMENT ***/
+            jsPsych.run(timeline);
+        </script>
+    </body>
+</html>
